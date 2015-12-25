@@ -2,20 +2,28 @@ package main
 
 import "testing"
 
-func TestStringUniqueCharacters(t *testing.T) {
-	if StringUniqueCharacters("abcdef") != true {
+func testStringUniqueCharactersFunction(f func(string) bool, t *testing.T) {
+	if f("abcdef") != true {
 		t.Error("String contains unique characters")
 	}
-	if StringUniqueCharacters("abcdefa") != false {
+	if f("abcdefa") != false {
 		t.Error("String does not contain unique characters")
 	}
-	if StringUniqueCharacters("") != false {
+	if f("") != false {
 		t.Error("String is empty")
 	}
-	if StringUniqueCharacters("⌘") != true {
+	if f("⌘") != true {
 		t.Error("String contains unique characters")
 	}
-	if StringUniqueCharacters("⌘⌘") != false {
+	if f("⌘⌘") != false {
 		t.Error("String does not contain unique characters")
 	}
+}
+
+func TestStringUniqueCharactersMap(t *testing.T) {
+	testStringUniqueCharactersFunction(func(str string) bool { return StringUniqueCharactersMap(str) }, t)
+}
+
+func TestStringUniqueCharactersWithoutMap(t *testing.T) {
+	testStringUniqueCharactersFunction(func(str string) bool { return StringUniqueCharacters(str) }, t)
 }
