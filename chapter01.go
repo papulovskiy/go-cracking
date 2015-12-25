@@ -54,10 +54,10 @@ func StringUniqueCharacters(str string) bool {
 /*
    Chapter 1
    Task 1.2
-   Unfortunately there is no C-style strings in Go (with null characters),
+   Unfortunately, there are no C-style strings in Go (with null characters),
    so I implemented just a string reverse with Unicode support.
    This implementation uses "unicode/utf8" to get runes count in the string
-   and it uses additional array to build a result.
+   and it uses additional an array to build a result.
    Space complexity: O(N).
    Time complexity: O(N).
 */
