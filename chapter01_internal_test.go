@@ -224,3 +224,21 @@ func TestMatrixRotateInPlace(t *testing.T) {
 		t.Error("Matrix was incorrectly rotated")
 	}
 }
+
+/*
+	Task 1.7
+*/
+func TestNullLines(t *testing.T) {
+	m1 := [][]int{[]int{0, 2}, []int{3, 4}}
+	NullLines(m1)
+	if m1[0][0] != 0 || m1[0][1] != 0 || m1[1][0] != 0 {
+		t.Error("Not all values set to 0")
+	}
+
+	m1 = [][]int{[]int{7, 4, 1}, []int{8, 0, 2}, []int{9, 6, 3}}
+	NullLines(m1)
+	if m1[0][1] != 0 || m1[1][0] != 0 || m1[1][2] != 0 || m1[2][2] != 0 {
+		t.Error("Not all values set to 0")
+	}
+
+}

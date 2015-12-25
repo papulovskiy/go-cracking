@@ -248,3 +248,21 @@ func MatrixRotateInPlace(m [][]int) {
 		}
 	}
 }
+
+/*
+   Task 1.7
+*/
+
+func NullLines(m [][]int) {
+	size := len(m)
+	for i := 0; i < size; i++ {
+		for j := 0; j < size; j++ {
+			if m[i][j] == 0 {
+				for k := 0; k < size; k++ {
+					m[i][k] = 0
+					m[k][j] = 0
+				}
+			}
+		}
+	}
+}
