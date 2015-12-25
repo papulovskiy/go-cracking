@@ -27,3 +27,15 @@ func TestStringUniqueCharactersMap(t *testing.T) {
 func TestStringUniqueCharactersWithoutMap(t *testing.T) {
 	testStringUniqueCharactersFunction(func(str string) bool { return StringUniqueCharacters(str) }, t)
 }
+
+func TestStringReverse(t *testing.T) {
+	if StringReverse("") != "" {
+		t.Error("String is empty")
+	}
+	if StringReverse("abc") != "cba" {
+		t.Error("String was not reversed")
+	}
+	if StringReverse("⌘aabbcc⌘") != "⌘ccbbaa⌘" {
+		t.Error("String was not reversed")
+	}
+}
