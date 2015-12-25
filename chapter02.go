@@ -225,3 +225,25 @@ func ListDigitsSum(l1, l2 *LinkedList) *LinkedList {
 
 	return &result
 }
+
+/*
+   Task 2.5
+   Space complexity: O(N).
+   Time complexity: O(N).
+*/
+func (l *LinkedList) FindLoop() *Item {
+	refs := make(map[*Item]bool)
+	item := l.Head
+	for {
+		if _, ok := refs[item]; ok {
+			return item
+		} else {
+			refs[item] = true
+		}
+		if item.next == nil {
+			break
+		}
+		item = item.next
+	}
+	return nil
+}

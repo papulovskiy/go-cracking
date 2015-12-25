@@ -160,5 +160,31 @@ func TestListDigistSum(t *testing.T) {
 	if r.AsString() != "4606" {
 		t.Error("Incorrect sum")
 	}
+}
+
+/*
+   Task 2.5
+*/
+func TestFindLoop(t *testing.T) {
+	var nl LinkedList
+	nl.Add(1)
+	nl.Add(2)
+	nl.Add(3)
+	nl.Add(4)
+	if nl.FindLoop() != nil {
+		t.Error("Incorrect begin of the loop")
+	}
+
+	var l LinkedList
+	l.Add(1)
+	l.Add(2)
+	m := l.Add(3)
+	l.Add(4)
+	last := l.Add(5)
+	last.next = m
+
+	if l.FindLoop() != m {
+		t.Error("Incorrect begin of the loop")
+	}
 
 }
