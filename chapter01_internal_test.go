@@ -3,7 +3,6 @@ package main
 import "testing"
 
 /*
-	Chapter 1
 	Task 1.1
 */
 func testStringUniqueCharactersFunction(f func(string) bool, t *testing.T) {
@@ -33,7 +32,6 @@ func TestStringUniqueCharactersWithoutMap(t *testing.T) {
 }
 
 /*
-	Chapter 1
 	Task 1.2
 */
 func testStringReverse(f func(string) string, t *testing.T) {
@@ -56,7 +54,6 @@ func TestStringReverseRunes(t *testing.T) {
 }
 
 /*
-	Chapter 1
 	Task 1.3
 */
 func TestStringDuplicateCharactersCleanup(t *testing.T) {
@@ -81,7 +78,6 @@ func TestStringDuplicateCharactersCleanup(t *testing.T) {
 }
 
 /*
-	Chapter 1
 	Task 1.4
 */
 func TestAreRunesSlicesEqual(t *testing.T) {

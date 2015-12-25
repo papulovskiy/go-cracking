@@ -8,7 +8,6 @@ import (
 )
 
 /*
-   Chapter 1
    Task 1.1
    This implementation uses map to count all characters occurrences.
    Space complexity (assuming Unicode usage) in a worst case would be O(N)
@@ -33,7 +32,6 @@ func StringUniqueCharactersMap(str string) bool {
 }
 
 /*
-   Chapter 1
    Task 1.1
    This implementation does not use additional data structure.
    Requires strings module to operate runes for Unicode support.
@@ -55,7 +53,6 @@ func StringUniqueCharacters(str string) bool {
 }
 
 /*
-   Chapter 1
    Task 1.2
    Unfortunately, there are no C-style strings in Go (with null characters),
    so I implemented just a string reverse with Unicode support.
@@ -80,7 +77,6 @@ func StringReverseAdditionalArray(str string) string {
 }
 
 /*
-   Chapter 1
    Task 1.2
    More elegant solution with array of runes and less memory consumption.
    Space complexity: O(N).
@@ -95,7 +91,6 @@ func StringReverseRunes(str string) string {
 }
 
 /*
-   Chapter 1
    Task 1.3
    Strings are immutable in Go, so I converted it to an array of runes,
    despite the fact of memory limit in the task.
@@ -130,7 +125,6 @@ func StringDuplicateCharactersCleanup(str string) string {
 }
 
 /*
-   Chapter 1
    Task 1.4
 */
 // Set of functions for runes slice sort
