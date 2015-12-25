@@ -186,3 +186,40 @@ func AreAnagrams(s1, s2 string) bool {
 	a2 := SortRunesSlice(RunesFilter([]rune(s2)))
 	return AreRunesSlicesEqual(a1, a2)
 }
+
+/*
+   Task 1.6
+*/
+func AreMatricesEqual(m1, m2 [][]int) bool {
+	if len(m1) != len(m2) {
+		return false
+	}
+	for i := 0; i < len(m1); i++ {
+		if len(m1[i]) != len(m2[i]) {
+			return false
+		}
+		for j := 0; j < len(m1[i]); j++ {
+			if m1[i][j] != m2[i][j] {
+				return false
+			}
+		}
+	}
+	return true
+}
+
+func MatrixRotateCopy(m1 [][]int) [][]int {
+	if len(m1) == 0 {
+		return [][]int{}
+	}
+	s := len(m1)
+	m2 := make([][]int, s)
+	for i := 0; i < s; i++ {
+		m2[i] = make([]int, s)
+	}
+	for i := 0; i < s; i++ {
+		for j := 0; j < s; j++ {
+			m2[j][s-1-i] = m1[i][j]
+		}
+	}
+	return m2
+}

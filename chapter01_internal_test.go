@@ -129,3 +129,55 @@ func TestAreAnagrams(t *testing.T) {
 		t.Error("Strings are not anagrams")
 	}
 }
+
+/*
+	Task 1.6
+*/
+func TestAreMatricesEqual(t *testing.T) {
+	m1 := [][]int{[]int{1, 2}, []int{3, 4}}
+	m2 := [][]int{[]int{1, 2}, []int{3, 4}}
+	if AreMatricesEqual(m1, m2) != true {
+		t.Error("Matrices must be equal")
+	}
+	m2 = [][]int{[]int{1, 3}, []int{2, 4}}
+	if AreMatricesEqual(m1, m2) != false {
+		t.Error("Matrices must not be equal")
+	}
+	m2 = [][]int{[]int{1, 2, 3}, []int{4, 5, 6}, []int{7, 8, 9}}
+	if AreMatricesEqual(m1, m2) != false {
+		t.Error("Matrices must not be equal")
+	}
+}
+
+func TestMatrixRotate(t *testing.T) {
+	m1 := [][]int{[]int{1, 2}, []int{3, 4}}
+	m2 := MatrixRotateCopy(m1)
+	m3 := [][]int{[]int{3, 1}, []int{4, 2}}
+	if AreMatricesEqual(m1, m2) != false {
+		t.Error("Matrices must not be equal")
+	}
+	if AreMatricesEqual(m2, m3) != true {
+		t.Error("Matrices must be equal")
+	}
+
+	m5 := [][]int{[]int{1, 2, 3}, []int{4, 5, 6}, []int{7, 8, 9}}
+	m6 := [][]int{[]int{7, 4, 1}, []int{8, 5, 2}, []int{9, 6, 3}}
+	if AreMatricesEqual(MatrixRotateCopy(m5), m6) != true {
+		t.Error("Matrices must be equal")
+	}
+
+	size := 4
+	value := 0
+	m7 := make([][]int, size)
+	for i := 0; i < size; i++ {
+		m7[i] = make([]int, size)
+		for j := 0; j < size; j++ {
+			m7[i][j] = value
+			value++
+		}
+	}
+	if AreMatricesEqual(MatrixRotateCopy(MatrixRotateCopy(MatrixRotateCopy(MatrixRotateCopy(m7)))), m7) != true {
+		t.Error("Matrices must be equal")
+	}
+
+}
