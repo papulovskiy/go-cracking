@@ -1,7 +1,9 @@
 package main
 
 import (
+	"sort"
 	"strings"
+	"unicode"
 	"unicode/utf8"
 )
 
@@ -125,4 +127,68 @@ func StringDuplicateCharactersCleanup(str string) string {
 		}
 	}
 	return string(s[0:arrayLen])
+}
+
+/*
+   Chapter 1
+   Task 1.4
+*/
+// Set of functions for runes slice sort
+type RunesSlice []rune
+
+func (rs RunesSlice) Len() int {
+	return len(rs)
+}
+func (rs RunesSlice) Less(i, j int) bool {
+	return rs[i] < rs[j]
+}
+func (rs RunesSlice) Swap(i, j int) {
+	rs[i], rs[j] = rs[j], rs[i]
+}
+
+func SortRunesSlice(r []rune) []rune {
+	a := RunesSlice(r)
+	sort.Sort(a)
+	return a
+}
+
+// Slices comparison
+func AreRunesSlicesEqual(a, b []rune) bool {
+	if a == nil && b == nil {
+		return true
+	}
+	if a == nil || b == nil {
+		return false
+	}
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+// Characters filter
+func RunesFilter(str []rune) []rune {
+	result := make([]rune, 0)
+	for _, r := range str {
+		if unicode.IsLetter(r) {
+			result = append(result, unicode.ToLower(r))
+		}
+	}
+	return result
+}
+
+// And anagram function itself
+func AreAnagrams(s1, s2 string) bool {
+	if s1 == "" && s2 == "" {
+		// An assumption that empty strings cannot be anagrams
+		return false
+	}
+	a1 := SortRunesSlice(RunesFilter([]rune(s1)))
+	a2 := SortRunesSlice(RunesFilter([]rune(s2)))
+	return AreRunesSlicesEqual(a1, a2)
 }

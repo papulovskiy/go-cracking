@@ -79,3 +79,57 @@ func TestStringDuplicateCharactersCleanup(t *testing.T) {
 		t.Error("String contains duplicate characters")
 	}
 }
+
+/*
+	Chapter 1
+	Task 1.4
+*/
+func TestAreRunesSlicesEqual(t *testing.T) {
+	if AreRunesSlicesEqual([]rune(""), []rune("")) != true {
+		t.Error("Empty runes slices must be equal")
+	}
+	if AreRunesSlicesEqual([]rune("aoe"), []rune("")) != false {
+		t.Error("Runes slices must not be equal")
+	}
+	if AreRunesSlicesEqual([]rune("aoe"), []rune("aoe")) != true {
+		t.Error("Runes slices must be equal")
+	}
+}
+
+func TestRunesFilter(t *testing.T) {
+	str := "aB, aB ! cdEf"
+	strFiltered := RunesFilter([]rune(str))
+	if AreRunesSlicesEqual(strFiltered, []rune("ababcdef")) != true {
+		t.Error("Runes were not filtered")
+	}
+	if AreRunesSlicesEqual(RunesFilter([]rune("abcdef")), []rune("abcdef")) != true {
+		t.Error("Runes must be equal")
+	}
+	if AreRunesSlicesEqual(RunesFilter([]rune("")), []rune("")) != true {
+		t.Error("Runes must be equal")
+	}
+	if AreRunesSlicesEqual(RunesFilter([]rune("abcdef!")), []rune("abcde")) != false {
+		t.Error("Runes must not be equal")
+	}
+}
+
+func TestRunesSliceSort(t *testing.T) {
+	if AreRunesSlicesEqual(SortRunesSlice([]rune("cba")), []rune("abc")) != true {
+		t.Error("Runes slice is not sorted")
+	}
+	if AreRunesSlicesEqual(SortRunesSlice([]rune("abc")), []rune("abc")) != true {
+		t.Error("Runes slice is not sorted")
+	}
+}
+
+func TestAreAnagrams(t *testing.T) {
+	if AreAnagrams("abcdef", "bcdefa") != true {
+		t.Error("Strings are anagrams")
+	}
+	if AreAnagrams("", "bcdefa") != false {
+		t.Error("Strings are not anagrams")
+	}
+	if AreAnagrams("", "") != false {
+		t.Error("Strings are not anagrams")
+	}
+}
