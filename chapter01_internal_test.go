@@ -240,5 +240,19 @@ func TestNullLines(t *testing.T) {
 	if m1[0][1] != 0 || m1[1][0] != 0 || m1[1][2] != 0 || m1[2][2] != 0 {
 		t.Error("Not all values set to 0")
 	}
+}
 
+/*
+	Task 1.8
+*/
+func TestIsRotation(t *testing.T) {
+	if IsRotation("waterbottle", "erbottlewat") != true {
+		t.Error("Strings are rotated")
+	}
+	if IsRotation("abcde", "eabcd") != true {
+		t.Error("Strings are rotated")
+	}
+	if IsRotation("abcde", "fabcd") != false {
+		t.Error("Strings are not rotated")
+	}
 }

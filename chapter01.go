@@ -252,7 +252,6 @@ func MatrixRotateInPlace(m [][]int) {
 /*
    Task 1.7
 */
-
 func NullLines(m [][]int) {
 	size := len(m)
 	for i := 0; i < size; i++ {
@@ -265,4 +264,16 @@ func NullLines(m [][]int) {
 			}
 		}
 	}
+}
+
+/*
+   Task 1.8
+*/
+func IsSubstring(s, substr string) bool {
+	return strings.Contains(s, substr)
+}
+
+func IsRotation(s1, s2 string) bool {
+	s3 := s1 + s1
+	return IsSubstring(s3, s2)
 }
