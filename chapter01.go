@@ -127,6 +127,8 @@ func StringDuplicateCharactersCleanup(str string) string {
 
 /*
    Task 1.4
+   Space complexity: O(N).
+   Time complexity: O(N).
 */
 // Set of functions for runes slice sort
 type RunesSlice []rune
@@ -208,6 +210,10 @@ func AreMatricesEqual(m1, m2 [][]int) bool {
 	return true
 }
 
+/*
+   Space complexity: O(N²).
+   Time complexity: O(N²).
+*/
 func MatrixRotateCopy(m1 [][]int) [][]int {
 	if len(m1) == 0 {
 		return [][]int{}
@@ -231,6 +237,10 @@ func TranslatePosition(x, y, size int) (x1, y1 int) {
 	return
 }
 
+/*
+   Space complexity: O(1).
+   Time complexity: O(N²).
+*/
 func MatrixRotateInPlace(m [][]int) {
 	size := len(m)
 	half := int(math.Ceil(float64(size) / 2.0))
@@ -251,6 +261,8 @@ func MatrixRotateInPlace(m [][]int) {
 
 /*
    Task 1.7
+   Space complexity: O(1).
+   Time complexity: O(N²).
 */
 func NullLines(m [][]int) {
 	size := len(m)
@@ -268,6 +280,10 @@ func NullLines(m [][]int) {
 
 /*
    Task 1.8
+   The idea behind this implementation is that repeated rotated string
+   should contain the original string as it is.
+   Space complexity: O(N).
+   Time complexity: O(N).
 */
 func IsSubstring(s, substr string) bool {
 	return strings.Contains(s, substr)
