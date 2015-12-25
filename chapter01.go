@@ -35,6 +35,7 @@ func StringUniqueCharactersMap(str string) bool {
    Task 1.1
    This implementation does not use additional data structure.
    Requires strings module to operate runes for Unicode support.
+   If there was no Unicode requirement I'd implement inner for loop.
    Space complexity O(1).
    Time complexity O(N²).
 */
