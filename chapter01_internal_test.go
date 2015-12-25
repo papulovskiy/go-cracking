@@ -179,5 +179,48 @@ func TestMatrixRotate(t *testing.T) {
 	if AreMatricesEqual(MatrixRotateCopy(MatrixRotateCopy(MatrixRotateCopy(MatrixRotateCopy(m7)))), m7) != true {
 		t.Error("Matrices must be equal")
 	}
+}
 
+func TestTranslatePosition(t *testing.T) {
+	x1, y1 := TranslatePosition(0, 0, 2)
+	if x1 != 0 || y1 != 1 {
+		t.Error("Incorrect position translation")
+	}
+	x1, y1 = TranslatePosition(0, 1, 2)
+	if x1 != 1 || y1 != 1 {
+		t.Error("Incorrect position translation")
+	}
+	x1, y1 = TranslatePosition(1, 0, 2)
+	if x1 != 0 || y1 != 0 {
+		t.Error("Incorrect position translation")
+	}
+	x1, y1 = TranslatePosition(1, 1, 2)
+	if x1 != 1 || y1 != 0 {
+		t.Error("Incorrect position translation")
+	}
+
+	x1, y1 = TranslatePosition(0, 0, 4)
+	if x1 != 0 || y1 != 3 {
+		t.Error("Incorrect position translation")
+	}
+	x1, y1 = TranslatePosition(2, 2, 4)
+	if x1 != 2 || y1 != 1 {
+		t.Error("Incorrect position translation")
+	}
+}
+
+func TestMatrixRotateInPlace(t *testing.T) {
+	m1 := [][]int{[]int{1, 2}, []int{3, 4}}
+	m2 := MatrixRotateCopy(m1)
+	MatrixRotateInPlace(m1)
+	if AreMatricesEqual(m1, m2) != true {
+		t.Error("Matrix was incorrectly rotated")
+	}
+
+	m1 = [][]int{[]int{1, 2, 3}, []int{4, 5, 6}, []int{7, 8, 9}}
+	m2 = [][]int{[]int{7, 4, 1}, []int{8, 5, 2}, []int{9, 6, 3}}
+	MatrixRotateInPlace(m1)
+	if AreMatricesEqual(m1, m2) != true {
+		t.Error("Matrix was incorrectly rotated")
+	}
 }

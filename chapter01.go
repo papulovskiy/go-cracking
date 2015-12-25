@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math"
 	"sort"
 	"strings"
 	"unicode"
@@ -222,4 +223,28 @@ func MatrixRotateCopy(m1 [][]int) [][]int {
 		}
 	}
 	return m2
+}
+
+func TranslatePosition(x, y, size int) (x1, y1 int) {
+	x1 = y
+	y1 = size - 1 - x
+	return
+}
+
+func MatrixRotateInPlace(m [][]int) {
+	size := len(m)
+	half := int(math.Ceil(float64(size) / 2.0))
+
+	for x0 := 0; x0 < half; x0++ {
+		for y0 := x0; y0 < half; y0++ {
+			x1, y1 := TranslatePosition(x0, y0, size)
+			x2, y2 := TranslatePosition(x1, y1, size)
+			x3, y3 := TranslatePosition(x2, y2, size)
+			value := m[x0][y0]
+			m[x0][y0] = m[x3][y3]
+			m[x3][y3] = m[x2][y2]
+			m[x2][y2] = m[x1][y1]
+			m[x1][y1] = value
+		}
+	}
 }
