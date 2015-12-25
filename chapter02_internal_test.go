@@ -9,6 +9,10 @@ func TestList(t *testing.T) {
 	l.Add(123)
 	l.Add(456)
 	// l.Print()
+
+	if l.AsString() != "123456" {
+		t.Error("List.AsString problem")
+	}
 }
 
 func listSize(l *LinkedList) int {
@@ -123,4 +127,38 @@ func TestDeleteItem(t *testing.T) {
 
 	// It's better to do proper testing here, but it requires aditional
 	// methods to be implemeted in LinkedList.
+}
+
+/*
+   Task 2.4
+*/
+func TestListDigistSum(t *testing.T) {
+	var l1, l2 LinkedList
+	l1.Add(5)
+	l1.Add(1)
+
+	l2.Add(7)
+	l2.Add(8)
+	l2.Add(1)
+
+	r := ListDigitsSum(&l1, &l2)
+	if r.AsString() != "202" {
+		t.Error("Incorrect sum")
+	}
+
+	var l3, l4 LinkedList
+	l3.Add(5)
+	l3.Add(7)
+	l3.Add(9)
+
+	l4.Add(9)
+	l4.Add(8)
+	l4.Add(0)
+	l4.Add(5)
+
+	r = ListDigitsSum(&l3, &l4)
+	if r.AsString() != "4606" {
+		t.Error("Incorrect sum")
+	}
+
 }

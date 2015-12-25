@@ -46,6 +46,36 @@ func (l *LinkedList) Print() {
 	fmt.Println()
 }
 
+// As it happens it's very handy to have the size of the list
+func (l *LinkedList) Size() int {
+	size := 0
+	item := l.Head
+	for {
+		size++
+		if item.next == nil {
+			break
+		}
+		item = item.next
+	}
+	return size
+}
+
+func (l *LinkedList) AsString() string {
+	s := ""
+	item := l.Head
+	if item == nil {
+		return ""
+	}
+	for {
+		s = s + fmt.Sprintf("%+v", item.Value)
+		if item.next == nil {
+			break
+		}
+		item = item.next
+	}
+	return s
+}
+
 /*
    Task 2.1
    This implementation uses map to store values.
@@ -112,17 +142,9 @@ func (l *LinkedList) NthToLast(n int) interface{} {
 	if n < 0 {
 		return nil
 	}
-	size := 0
-	item := l.Head
-	for {
-		size++
-		if item.next == nil {
-			break
-		}
-		item = item.next
-	}
+	size := l.Size()
 
-	item = l.Head
+	item := l.Head
 	cursor := 0
 	for {
 		if size-1-cursor == n {
@@ -159,4 +181,47 @@ func DeleteItem(i *Item) {
 			item = item.next
 		}
 	}
+}
+
+/*
+   Task 2.4
+   Space complexity: O(N).
+   Time complexity: O(N).
+*/
+func ListDigitsSum(l1, l2 *LinkedList) *LinkedList {
+	var result LinkedList
+
+	c1 := l1.Head
+	c2 := l2.Head
+
+	memory := 0
+	for {
+		sum := c1.Value.(int) + c2.Value.(int) + memory
+		if memory > 0 {
+			memory = 0
+		}
+		if sum > 9 {
+			sum -= 10
+			memory = 1
+		}
+		result.Add(sum)
+		if c1.next == nil && c2.next == nil {
+			break
+		}
+		if c1.next == nil {
+			c1 = &Item{Value: 0, next: nil}
+		} else {
+			c1 = c1.next
+		}
+		if c2.next == nil {
+			c2 = &Item{Value: 0, next: nil}
+		} else {
+			c2 = c2.next
+		}
+	}
+	if memory > 0 {
+		result.Add(memory)
+	}
+
+	return &result
 }
