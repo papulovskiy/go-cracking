@@ -6,12 +6,12 @@ import (
 )
 
 /*
-Chapter 1
-Task 1.1
-This implementation uses map to count all characters occurrences.
-Space complexity (assuming Unicode usage) in a worst case would be O(N)
-but the maximum size of the map is 1111998 elements due to Unicode limitations.
-Time complexity is O(N).
+   Chapter 1
+   Task 1.1
+   This implementation uses map to count all characters occurrences.
+   Space complexity (assuming Unicode usage) in a worst case would be O(N)
+   but the maximum size of the map is 1111998 elements due to Unicode limitations.
+   Time complexity is O(N).
 */
 func StringUniqueCharactersMap(str string) bool {
 	if len(str) == 0 {
@@ -31,12 +31,12 @@ func StringUniqueCharactersMap(str string) bool {
 }
 
 /*
-Chapter 1
-Task 1.1
-This implementation does not use additional data structure.
-Requires strings module to operate runes for Unicode support.
-Space complexity O(1).
-Time complexity O(N²).
+   Chapter 1
+   Task 1.1
+   This implementation does not use additional data structure.
+   Requires strings module to operate runes for Unicode support.
+   Space complexity O(1).
+   Time complexity O(N²).
 */
 func StringUniqueCharacters(str string) bool {
 	if len(str) == 0 {
@@ -52,16 +52,16 @@ func StringUniqueCharacters(str string) bool {
 }
 
 /*
-Chapter 1
-Task 1.2
-Unfortunately there is no C-style strings in Go (with null characters),
-so I implemented just a string reverse with Unicode support.
-This implementation uses "unicode/utf8" to get runes count in the string
-and it uses additional array to build a result.
-Space complexity: O(N).
-Time complexity: O(N).
+   Chapter 1
+   Task 1.2
+   Unfortunately there is no C-style strings in Go (with null characters),
+   so I implemented just a string reverse with Unicode support.
+   This implementation uses "unicode/utf8" to get runes count in the string
+   and it uses additional array to build a result.
+   Space complexity: O(N).
+   Time complexity: O(N).
 */
-func StringReverse(str string) string {
+func StringReverseAdditionalArray(str string) string {
 	if len(str) == 0 {
 		return ""
 	}
@@ -74,4 +74,19 @@ func StringReverse(str string) string {
 		i++
 	}
 	return string(newStrArr)
+}
+
+/*
+   Chapter 1
+   Task 1.2
+   More elegant solution with array of runes and less memory consumption.
+   Space complexity: O(N).
+   Time complexity: O(N).
+*/
+func StringReverseRunes(str string) string {
+	runes := []rune(str)
+	for i, j := 0, len(runes)-1; i < j; i, j = i+1, j-1 {
+		runes[i], runes[j] = runes[j], runes[i]
+	}
+	return string(runes)
 }

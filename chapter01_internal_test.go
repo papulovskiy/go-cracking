@@ -2,6 +2,10 @@ package main
 
 import "testing"
 
+/*
+	Chapter 1
+	Task 1.1
+*/
 func testStringUniqueCharactersFunction(f func(string) bool, t *testing.T) {
 	if f("abcdef") != true {
 		t.Error("String contains unique characters")
@@ -28,14 +32,25 @@ func TestStringUniqueCharactersWithoutMap(t *testing.T) {
 	testStringUniqueCharactersFunction(func(str string) bool { return StringUniqueCharacters(str) }, t)
 }
 
-func TestStringReverse(t *testing.T) {
-	if StringReverse("") != "" {
+/*
+	Chapter 1
+	Task 1.2
+*/
+func testStringReverse(f func(string) string, t *testing.T) {
+	if f("") != "" {
 		t.Error("String is empty")
 	}
-	if StringReverse("abc") != "cba" {
+	if f("abc") != "cba" {
 		t.Error("String was not reversed")
 	}
-	if StringReverse("⌘aabbcc⌘") != "⌘ccbbaa⌘" {
+	if f("⌘aabbcc⌘") != "⌘ccbbaa⌘" {
 		t.Error("String was not reversed")
 	}
+}
+
+func TestStringReverseAdditionalArray(t *testing.T) {
+	testStringReverse(func(str string) string { return StringReverseAdditionalArray(str) }, t)
+}
+func TestStringReverseRunes(t *testing.T) {
+	testStringReverse(func(str string) string { return StringReverseRunes(str) }, t)
 }
