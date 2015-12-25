@@ -8,7 +8,7 @@ func TestList(t *testing.T) {
 	var l LinkedList
 	l.Add(123)
 	l.Add(456)
-	l.Print()
+	// l.Print()
 }
 
 func listSize(l *LinkedList) int {
@@ -76,4 +76,51 @@ func TestRemoveDuplicates(t *testing.T) {
 	if listSize(&l) != 5 {
 		t.Error("Incorrect list size")
 	}
+}
+
+/*
+   Task 2.2
+*/
+func TestNthToLast(t *testing.T) {
+	var l LinkedList
+	l.Add(1)
+	l.Add(2)
+	l.Add(3)
+	l.Add(4)
+	l.Add(5)
+
+	if l.NthToLast(1) != 4 {
+		t.Error("Incorrect nth to last element")
+	}
+	if l.NthToLast(2) != 3 {
+		t.Error("Incorrect nth to last element")
+	}
+	if l.NthToLast(0) != 5 {
+		t.Error("Incorrect nth to last element")
+	}
+}
+
+/*
+   Task 2.3
+*/
+func TestDeleteItem(t *testing.T) {
+	var l LinkedList
+	l.Add(1)
+	m := l.Add(2)
+	l.Add(3)
+	l.Add(4)
+
+	DeleteItem(m)
+	if listSize(&l) != 3 {
+		t.Error("Incorrect list size")
+	}
+
+	l.Add(5)
+	m = l.Add(6)
+	if listSize(&l) != 5 {
+		t.Error("Incorrect list size")
+	}
+
+	// It's better to do proper testing here, but it requires aditional
+	// methods to be implemeted in LinkedList.
 }

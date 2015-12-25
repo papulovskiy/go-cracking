@@ -16,7 +16,7 @@ type LinkedList struct {
 	Head *Item
 }
 
-func (l *LinkedList) Add(v interface{}) {
+func (l *LinkedList) Add(v interface{}) *Item {
 	newItem := &Item{v, nil}
 	if l.Head == nil {
 		l.Head = newItem
@@ -30,6 +30,7 @@ func (l *LinkedList) Add(v interface{}) {
 		}
 		item.next = newItem
 	}
+	return newItem
 }
 
 // Just for debug
@@ -97,5 +98,65 @@ func (l *LinkedList) RemoveDuplicates() {
 			sub = sub.next
 		}
 		item = item.next
+	}
+}
+
+/*
+   Task 2.2
+   At first count all items so it's much easier to calculate nth element,
+   second pass is to find specific element.
+   Space complexity: O(1).
+   Time complexity: O(N).
+*/
+func (l *LinkedList) NthToLast(n int) interface{} {
+	if n < 0 {
+		return nil
+	}
+	size := 0
+	item := l.Head
+	for {
+		size++
+		if item.next == nil {
+			break
+		}
+		item = item.next
+	}
+
+	item = l.Head
+	cursor := 0
+	for {
+		if size-1-cursor == n {
+			return item.Value
+		}
+		cursor++
+		if item.next == nil {
+			break
+		}
+		item = item.next
+	}
+	return nil
+}
+
+/*
+   Task 2.3
+   Actually, it's a "swap".
+   Space complexity: O(1).
+   Time complexity: O(N).
+*/
+func DeleteItem(i *Item) {
+	if i.next == nil {
+		// Initial condition is "delete item in the middle"
+		return
+	} else {
+		item := i
+		for {
+			item.Value = item.next.Value
+			if item.next.next == nil {
+				item.next = nil
+				break
+			}
+
+			item = item.next
+		}
 	}
 }
