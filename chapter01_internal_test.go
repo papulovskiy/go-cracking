@@ -54,3 +54,28 @@ func TestStringReverseAdditionalArray(t *testing.T) {
 func TestStringReverseRunes(t *testing.T) {
 	testStringReverse(func(str string) string { return StringReverseRunes(str) }, t)
 }
+
+/*
+	Chapter 1
+	Task 1.3
+*/
+func TestStringDuplicateCharactersCleanup(t *testing.T) {
+	if StringDuplicateCharactersCleanup("abcdef") != "abcdef" {
+		t.Error("String does not contain duplicate characters")
+	}
+	if StringDuplicateCharactersCleanup("abcdefa") != "abcdef" {
+		t.Error("String contains duplicate characters")
+	}
+	if StringDuplicateCharactersCleanup("ab⌘cde⌘fa") != "ab⌘cdef" {
+		t.Error("String contains duplicate characters")
+	}
+	if StringDuplicateCharactersCleanup("") != "" {
+		t.Error("String is empty")
+	}
+	if StringDuplicateCharactersCleanup("aa") != "a" {
+		t.Error("String contains duplicate characters")
+	}
+	if StringDuplicateCharactersCleanup("aaaaaa") != "a" {
+		t.Error("String contains duplicate characters")
+	}
+}

@@ -91,3 +91,38 @@ func StringReverseRunes(str string) string {
 	}
 	return string(runes)
 }
+
+/*
+   Chapter 1
+   Task 1.3
+   Strings are immutable in Go, so I converted it to an array of runes,
+   despite the fact of memory limit in the task.
+   Space complexity: O(1) (if don't count array of runes).
+   Time complexity: O(N²).
+*/
+func StringDuplicateCharactersCleanup(str string) string {
+	s := []rune(str)
+	l := len(s)
+	arrayLen := l
+	i := 0
+	for {
+		currentArrayLen := arrayLen - 1
+		for j := i + 1; j <= currentArrayLen; j++ {
+			if s[i] == s[j] {
+				// Duplicate found
+				// Now we need to move remaining subarray one position left
+				for k := j; k < arrayLen-1; k++ {
+					s[k] = s[k+1]
+				}
+				arrayLen--
+			}
+		}
+		// Exit condition: we reached the end of array
+		if i <= arrayLen {
+			i++
+		} else {
+			break
+		}
+	}
+	return string(s[0:arrayLen])
+}
