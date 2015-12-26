@@ -1,8 +1,9 @@
 package main
 
-import "testing"
-
-// import "fmt"
+import (
+	"math/rand"
+	"testing"
+)
 
 /*
    Tests for basic data structures
@@ -197,6 +198,29 @@ func TestMyQueue(t *testing.T) {
 
 	if mq.Dequeue() != nil {
 		t.Error("Queue is not empty")
+	}
+}
+
+/*
+	Task 3.6
+*/
+func TestStackSort(t *testing.T) {
+	var s Stack
+
+	size := 10
+	for i := 0; i < size; i++ {
+		s.Push(int(rand.Int31n(10)))
+	}
+
+	s.Sort()
+
+	prev := s.Peek()
+	for i := 0; i < size; i++ {
+		item := s.Pop()
+		if item != nil && prev != nil && item.(int) < prev.(int) {
+			t.Error("Incorrect stack sort")
+		}
+		prev = item
 	}
 
 }

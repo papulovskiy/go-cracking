@@ -43,6 +43,13 @@ func (s *Stack) Pop() interface{} {
 	return item.Value
 }
 
+func (s *Stack) Peek() interface{} {
+	if s.top == nil {
+		return nil
+	}
+	return s.top.Value
+}
+
 func (s *Stack) AsString() string {
 	str := ""
 	item := s.top
@@ -189,4 +196,25 @@ func (q *MyQueue) Enqueue(v interface{}) {
 
 func (q *MyQueue) Dequeue() interface{} {
 	return q.s1.Pop()
+}
+
+/*
+   Task 3.6
+*/
+func (s *Stack) Sort() {
+	var s2 Stack
+	for {
+		if s.size == 0 {
+			break
+		}
+		item := s.Pop()
+		for s2.size > 0 && s2.Peek().(int) > item.(int) {
+			s.Push(s2.Pop())
+		}
+		s2.Push(item)
+	}
+	size := s2.size
+	for i := 0; i < size; i++ {
+		s.Push(s2.Pop())
+	}
 }
