@@ -56,3 +56,31 @@ func TestQueue(t *testing.T) {
 		t.Error("Queue is not empty")
 	}
 }
+
+/*
+	Task 3.2
+*/
+func TestStackMin(t *testing.T) {
+	var s Stack
+
+	if s.Pop() != nil {
+		t.Error("Stack is not empty")
+	}
+
+	s.Push(10)
+	s.Push(20)
+	s.Push(30)
+	if s.top.min.Value != 10 {
+		t.Error("Incorrect min value")
+	}
+
+	s.Push(5)
+	if s.top.min.Value != 5 {
+		t.Error("Incorrect min value")
+	}
+
+	s.Pop()
+	if s.top.min.Value != 10 {
+		t.Error("Incorrect min value")
+	}
+}

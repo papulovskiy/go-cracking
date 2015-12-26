@@ -10,6 +10,7 @@ import (
 type StackItem struct {
 	Value interface{}
 	next  *StackItem
+	min   *StackItem
 }
 
 type Stack struct {
@@ -18,6 +19,11 @@ type Stack struct {
 
 func (s *Stack) Push(v interface{}) {
 	newItem := &StackItem{Value: v, next: s.top}
+	if s.top == nil || s.top.min == nil || newItem.Value.(int) < s.top.min.Value.(int) {
+		newItem.min = newItem
+	} else {
+		newItem.min = s.top.min
+	}
 	s.top = newItem
 }
 
@@ -62,3 +68,15 @@ func (q *Queue) Dequeue() interface{} {
 	q.first = item.next
 	return item.Value
 }
+
+/*
+   Task 3.1
+   For three stacks implementation based on just on array, I'd go with
+   data structure that stores reference to the previous element of this stack
+   and additional three variables should be referencing to three stack's
+   top elements.
+*/
+
+/*
+   Task 3.2
+*/
