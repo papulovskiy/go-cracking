@@ -171,3 +171,32 @@ func TestHanoi(t *testing.T) {
 		t.Error("Not all elements were moved")
 	}
 }
+
+/*
+	Task 3.5
+*/
+func TestMyQueue(t *testing.T) {
+	mq := NewMyQueue()
+	if mq.Dequeue() != nil {
+		t.Error("Queue is not empty")
+	}
+
+	mq.Enqueue(1)
+	mq.Enqueue(2)
+	mq.Enqueue(3)
+
+	if mq.Dequeue() != 1 {
+		t.Error("Incorrect queue order")
+	}
+	if mq.Dequeue() != 2 {
+		t.Error("Incorrect queue order")
+	}
+	if mq.Dequeue() != 3 {
+		t.Error("Incorrect queue order")
+	}
+
+	if mq.Dequeue() != nil {
+		t.Error("Queue is not empty")
+	}
+
+}

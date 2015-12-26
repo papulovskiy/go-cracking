@@ -157,3 +157,36 @@ func HanoiMoveN(n int, from, middle, to *Stack) {
 		HanoiMoveN(n-1, middle, from, to)
 	}
 }
+
+/*
+   Task 3.5
+*/
+type MyQueue struct {
+	s1, s2 *Stack
+}
+
+func NewMyQueue() *MyQueue {
+	mq := new(MyQueue)
+	mq.s1 = new(Stack)
+	mq.s2 = new(Stack)
+	return mq
+}
+
+func (q *MyQueue) Enqueue(v interface{}) {
+	size := q.s1.size
+	if size > 0 {
+		for i := 0; i < size; i++ {
+			q.s2.Push(q.s1.Pop())
+		}
+	}
+	q.s1.Push(v)
+	if size > 0 {
+		for i := 0; i < size; i++ {
+			q.s1.Push(q.s2.Pop())
+		}
+	}
+}
+
+func (q *MyQueue) Dequeue() interface{} {
+	return q.s1.Pop()
+}
