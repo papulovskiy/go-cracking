@@ -79,4 +79,6 @@ func (q *Queue) Dequeue() interface{} {
 
 /*
    Task 3.2
+   Implemented in Stack itself - stores reference to min elemenent of every push,
+   so in case of pop there is always the previous value.
 */
