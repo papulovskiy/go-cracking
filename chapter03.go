@@ -1,7 +1,7 @@
 package main
 
 import (
-// "fmt"
+	"fmt"
 )
 
 /*
@@ -41,6 +41,23 @@ func (s *Stack) Pop() interface{} {
 	}
 	s.size--
 	return item.Value
+}
+
+func (s *Stack) AsString() string {
+	str := ""
+	item := s.top
+	if item == nil {
+		return ""
+	}
+	for {
+		str = str + fmt.Sprintf("%+v", item.Value)
+		if item.next == nil {
+			break
+		}
+		item = item.next
+	}
+	return str
+
 }
 
 type QueueItem struct {
@@ -128,4 +145,15 @@ func (sos *SetOfStacks) PopAt(n int) interface{} {
 		return nil
 	}
 	return sos.stacks[n].Pop()
+}
+
+/*
+   Task 3.4
+*/
+func HanoiMoveN(n int, from, middle, to *Stack) {
+	if n >= 1 {
+		HanoiMoveN(n-1, from, to, middle)
+		to.Push(from.Pop())
+		HanoiMoveN(n-1, middle, from, to)
+	}
 }

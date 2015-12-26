@@ -2,6 +2,8 @@ package main
 
 import "testing"
 
+// import "fmt"
+
 /*
    Tests for basic data structures
 */
@@ -145,5 +147,27 @@ func TestSetOfStacksPopAt(t *testing.T) {
 	}
 	if s.PopAt(1) != 4 {
 		t.Error("Incorrect stack order")
+	}
+}
+
+/*
+	Task 3.4
+*/
+func TestHanoi(t *testing.T) {
+	size := 5
+	var s1, s2, s3 Stack
+	for i := 0; i < size; i++ {
+		s1.Push(size - i)
+	}
+
+	HanoiMoveN(size, &s1, &s2, &s3)
+	if s1.size != 0 {
+		t.Error("Not all elements were moved")
+	}
+	if s2.size != 0 {
+		t.Error("Not all elements were moved")
+	}
+	if s3.size != size {
+		t.Error("Not all elements were moved")
 	}
 }
