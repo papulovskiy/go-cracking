@@ -84,3 +84,66 @@ func TestStackMin(t *testing.T) {
 		t.Error("Incorrect min value")
 	}
 }
+
+/*
+	Task 3.3
+*/
+func TestSetOfStacks(t *testing.T) {
+	s := NewSetOfStacks(3)
+
+	if s.Pop() != nil {
+		t.Error("Stack is not empty")
+	}
+
+	s.Push(1)
+	s.Push(2)
+	s.Push(3)
+	s.Push(4)
+	s.Push(5)
+	s.Push(6)
+	s.Push(7)
+	s.Push(8)
+	s.Push(9)
+
+	if s.Pop() != 9 {
+		t.Error("Incorrect stack order")
+	}
+	s.Pop()
+	s.Pop()
+	if s.Pop() != 6 {
+		t.Error("Incorrect stack order")
+	}
+	s.Pop()
+	s.Pop()
+	if s.Pop() != 3 {
+		t.Error("Incorrect stack order")
+	}
+	s.Pop()
+	if s.Pop() != 1 {
+		t.Error("Incorrect stack order")
+	}
+
+	if s.Pop() != nil {
+		t.Error("Stack is not empty")
+	}
+}
+
+func TestSetOfStacksPopAt(t *testing.T) {
+	s := NewSetOfStacks(2)
+
+	if s.Pop() != nil {
+		t.Error("Stack is not empty")
+	}
+
+	s.Push(1)
+	s.Push(2)
+	s.Push(3)
+	s.Push(4)
+	s.Push(5)
+	if s.PopAt(0) != 2 {
+		t.Error("Incorrect stack order")
+	}
+	if s.PopAt(1) != 4 {
+		t.Error("Incorrect stack order")
+	}
+}

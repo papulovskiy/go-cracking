@@ -14,7 +14,8 @@ type StackItem struct {
 }
 
 type Stack struct {
-	top *StackItem
+	top  *StackItem
+	size int
 }
 
 func (s *Stack) Push(v interface{}) {
@@ -25,6 +26,7 @@ func (s *Stack) Push(v interface{}) {
 		newItem.min = s.top.min
 	}
 	s.top = newItem
+	s.size++
 }
 
 func (s *Stack) Pop() interface{} {
@@ -37,6 +39,7 @@ func (s *Stack) Pop() interface{} {
 	} else {
 		s.top = item.next
 	}
+	s.size--
 	return item.Value
 }
 
@@ -82,3 +85,47 @@ func (q *Queue) Dequeue() interface{} {
    Implemented in Stack itself - stores reference to min elemenent of every push,
    so in case of pop there is always the previous value.
 */
+
+/*
+   Task 3.3
+*/
+
+type SetOfStacks struct {
+	stacks       []*Stack
+	size         int
+	maxStackSize int
+}
+
+func NewSetOfStacks(maxStackSize int) *SetOfStacks {
+	sos := new(SetOfStacks)
+	sos.maxStackSize = maxStackSize
+	sos.stacks = make([]*Stack, 0)
+	sos.stacks = append(sos.stacks, new(Stack))
+	sos.size++
+	return sos
+}
+
+func (sos *SetOfStacks) Push(v interface{}) {
+	if sos.stacks[sos.size-1].size >= sos.maxStackSize {
+		sos.stacks = append(sos.stacks, new(Stack))
+		sos.size++
+	}
+	sos.stacks[sos.size-1].Push(v)
+}
+
+func (sos *SetOfStacks) Pop() interface{} {
+	item := sos.stacks[sos.size-1].Pop()
+	if item == nil && sos.size > 1 {
+		sos.size--
+		item = sos.Pop()
+	}
+	return item
+}
+
+func (sos *SetOfStacks) PopAt(n int) interface{} {
+	if n >= sos.size {
+		// Of course it's better to raise an error
+		return nil
+	}
+	return sos.stacks[n].Pop()
+}
