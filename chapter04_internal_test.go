@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	// "fmt"
 	"math/rand"
 	"testing"
 	"time"
@@ -19,8 +19,8 @@ func TestBinaryTree(t *testing.T) {
 	}
 	tree.Print()
 	for i := 0; i < size; i++ {
-		search := randInt()
-		fmt.Printf("%+v %+v %+v\n", i, search, tree.Find(search))
+		// search := randInt()
+		// fmt.Printf("%+v %+v %+v\n", i, search, tree.Find(search))
 	}
 
 }

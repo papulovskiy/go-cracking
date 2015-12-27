@@ -63,5 +63,5 @@ func (t *BinaryTree) PrintSub(level, offset int) {
 	}
 }
 func (t *BinaryTree) Print() {
-	t.PrintSub(0, 0)
+	// t.PrintSub(0, 0)
 }
